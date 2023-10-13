@@ -142,7 +142,7 @@ public class AbsJson implements Serializable {
                     if(i > playFlags.length){
                         urlInfo.flag = prefix + i;
                     } else {
-                        urlInfo.flag = StringUtils.isEmpty(playFlags[i]) ? prefix + i : playFlags[i];
+                        urlInfo.flag = StringUtils.isEmpty(playFlags[i]) ? prefix + i : prefix + playFlags[i];
                     }
                     urlInfo.urls = playUrls[i];
                     infoList.add(urlInfo);
