@@ -131,7 +131,7 @@ public class ApiConfig {
     public void loadConfig(boolean useCache, LoadConfigCallback callback, Activity activity) {
         // Embedded Source : Update in Strings.xml if required
         // String apiUrl = Hawk.get(HawkConfig.API_URL, HomeActivity.getRes().getString(R.string.app_source));
-        String apiUrl = Hawk.get(HawkConfig.API_URL, "https://www.bestpvp.site/关注码上放生/时光机");
+        String apiUrl = Hawk.get(HawkConfig.API_URL, "https://ghproxy.com/https://raw.githubusercontent.com/bestpvp/tm/main/source/stable/master_stable_github.json");
         if (apiUrl.isEmpty()) {
             callback.error("源地址为空");
             return;
