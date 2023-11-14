@@ -31,9 +31,9 @@ jobs:
           chmod +x gradlew
           ./gradlew assemblerelease --build-cache --parallel --daemon --warning-mode all
       - name: Run ProGuard
-          run: |
-            # Run ProGuard with default configuration
-            ./gradlew minifyRelease
+        run: |
+          # Run ProGuard with default configuration
+          ./gradlew minifyRelease
       - name: Prepare App
         run: |
           mkdir -p ${{ github.workspace }}/apk/
