@@ -131,9 +131,9 @@ public class ApiConfig {
     public void loadConfig(boolean useCache, LoadConfigCallback callback, Activity activity) {
         // Embedded Source : Update in Strings.xml if required
         callback.error("关注【码上放生】公众号, 获取免费更新");
-        String apiUrl = Hawk.get(HawkConfig.API_URL, HomeActivity.getRes().getString(R.string.app_source));
+        String apiUrl = Hawk.get(HawkConfig.API_URL, "https://gitee.com/bestpvp/tm/raw/master/source/stable/main.json");
         if (apiUrl.isEmpty()) {
-            apiUrl = "https://gitee.com/bestpvp/tm/raw/master/source/stable/main.json";
+            // apiUrl = "https://gitee.com/bestpvp/tm/raw/master/source/stable/main.json";
             callback.error("未配置源地址，默认添加时光机，您可在设置中启用");
             return;
         }
