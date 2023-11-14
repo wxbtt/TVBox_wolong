@@ -130,10 +130,8 @@ public class ApiConfig {
 
     public void loadConfig(boolean useCache, LoadConfigCallback callback, Activity activity) {
         // Embedded Source : Update in Strings.xml if required
-        callback.error("本软件基于 [takagen99/Box] 打包，不对任何损失或损害负责。");
         String apiUrl = Hawk.get(HawkConfig.API_URL, "https://gitee.com/bestpvp/tm/raw/master/source/stable/main.json");
         if (apiUrl.isEmpty()) {
-            // apiUrl = "https://gitee.com/bestpvp/tm/raw/master/source/stable/main.json";
             callback.error("关注 [码上放生] 公众号，获取最新的 [时光机] 数据源");
             return;
         }
