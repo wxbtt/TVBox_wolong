@@ -36,6 +36,10 @@ jobs:
           for file in `find ~ -name "*.apk" -print`; do
             mv "$file" ${{ github.workspace }}/apk/
           done
+      - name: Run ProGuard
+        run: |
+          # Run ProGuard with default configuration
+          ./gradlew proguardRelease
       - name: Upload App To Artifact
         uses: actions/upload-artifact@v3
         with:
