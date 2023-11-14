@@ -30,16 +30,16 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew assemblerelease --build-cache --parallel --daemon --warning-mode all
+      - name: Run ProGuard
+          run: |
+            # Run ProGuard with default configuration
+            ./gradlew minifyRelease
       - name: Prepare App
         run: |
           mkdir -p ${{ github.workspace }}/apk/
           for file in `find ~ -name "*.apk" -print`; do
             mv "$file" ${{ github.workspace }}/apk/
           done
-      - name: Run ProGuard
-        run: |
-          # Run ProGuard with default configuration
-          ./gradlew minifyRelease
       - name: Upload App To Artifact
         uses: actions/upload-artifact@v3
         with:
