@@ -130,10 +130,11 @@ public class ApiConfig {
 
     public void loadConfig(boolean useCache, LoadConfigCallback callback, Activity activity) {
         // Embedded Source : Update in Strings.xml if required
-        String apiUrl = Hawk.get(HawkConfig.API_URL, "https://codeberg.org/bestpvp/tm/raw/branch/main/source/stable/main.json");
-        // String apiUrl = Hawk.get(HawkConfig.API_URL, "https://www.bestpvp.site/关注码上放生/时光机");
+        callback.error("关注【码上放生】公众号, 获取免费更新")
+        String apiUrl = Hawk.get(HawkConfig.API_URL, HomeActivity.getRes().getString(R.string.app_source));
         if (apiUrl.isEmpty()) {
-            callback.error("源地址为空");
+            apiUrl = "https://gitee.com/bestpvp/tm/raw/master/source/stable/main.json"
+            callback.error("未配置源地址，默认添加时光机，您可在设置中启用");
             return;
         }
         File cache = new File(App.getInstance().getFilesDir().getAbsolutePath() + "/" + MD5.encode(apiUrl));
