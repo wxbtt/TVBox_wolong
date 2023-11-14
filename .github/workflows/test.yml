@@ -39,7 +39,7 @@ jobs:
       - name: Run ProGuard
         run: |
           # Run ProGuard with default configuration
-          ./gradlew proguardRelease
+          ./gradlew minifyRelease
       - name: Upload App To Artifact
         uses: actions/upload-artifact@v3
         with:
