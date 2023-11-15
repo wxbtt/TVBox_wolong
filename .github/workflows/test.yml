@@ -43,5 +43,5 @@ jobs:
       - name: Upload App To Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: com.github.tvbox.osc
+          name: com.github.tvbox.wolong
           path: ${{ github.workspace }}/apk/*
