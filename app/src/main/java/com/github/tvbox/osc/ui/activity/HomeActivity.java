@@ -402,7 +402,7 @@ public class HomeActivity extends BaseActivity {
                                     if (Hawk.get(HawkConfig.HOME_DEFAULT_SHOW, false)) {
                                         jumpActivity(LivePlayActivity.class);
                                    }
-                                    Toast.makeText(HomeActivity.this, getString(R.string.hm_ok), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(HomeActivity.this, getString(R.string.hm_ok), Toast.LENGTH_LONG).show();
                                 }
                                 initData();
                             }
