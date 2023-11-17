@@ -190,7 +190,7 @@ public class ApiConfig {
                             callback.success();
                         } catch (Throwable th) {
                             th.printStackTrace();
-                            callback.error("解析配置失败");
+                            callback.error("解析失败\n关注[码上放生]公众号");
                         }
                     }
 
