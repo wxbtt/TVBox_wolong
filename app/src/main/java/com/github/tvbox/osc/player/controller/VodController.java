@@ -208,6 +208,7 @@ public class VodController extends BaseController {
                                     }
                                 });
                         mBack.setVisibility(GONE);
+                        mLockView.setVisibility(GONE);
                         break;
                     }
                     case 1004: { // 设置速度
@@ -782,15 +783,22 @@ public class VodController extends BaseController {
         mSubtitleBtn.setOnLongClickListener(new OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                mSubtitleView.setVisibility(View.GONE);
-                mSubtitleView.destroy();
-                mSubtitleView.clearSubtitleCache();
-                mSubtitleView.isInternal = false;
-                hideBottom();
-                Toast.makeText(getContext(), HomeActivity.getRes().getString(R.string.vod_sub_off), Toast.LENGTH_SHORT).show();
+            	if (mSubtitleView.getVisibility() == View.GONE) {
+                    mSubtitleView.setVisibility(VISIBLE);
+                    hideBottom();
+                    Toast.makeText(getContext(), HomeActivity.getRes().getString(R.string.vod_sub_on), Toast.LENGTH_SHORT).show();
+                } else {
+	                mSubtitleView.setVisibility(View.GONE);
+	               // mSubtitleView.destroy();
+	               // mSubtitleView.clearSubtitleCache();
+	               // mSubtitleView.isInternal = false;
+	                hideBottom();
+	                Toast.makeText(getContext(), HomeActivity.getRes().getString(R.string.vod_sub_off), Toast.LENGTH_SHORT).show();
+	            }
                 return true;
             }
         });
+                
         // Button : AUDIO track selection --------------------------------------
         mAudioTrackBtn.setOnClickListener(new OnClickListener() {
             @Override
@@ -947,6 +955,7 @@ public class VodController extends BaseController {
                     mTopRoot.setVisibility(GONE);
                     mBottomRoot.setVisibility(GONE);
                     mBack.setVisibility(GONE);
+                    mLockView.setVisibility(GONE);
                     mProgressTop.setVisibility(GONE);
                     mHandler.removeCallbacks(mHideBottomRunnable);
                     ((DetailActivity) mActivity).toggleFullPreview();
