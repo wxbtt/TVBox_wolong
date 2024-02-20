@@ -276,6 +276,7 @@ public class ApiConfig {
                                 callback.success();
                             } else {
                                 callback.error("从网络上加载jar写入缓存后加载失败");
+                                callback.error(jarLoader.load(response.body().getAbsolutePath()));
                             }
                         } else {
                             callback.error("从网络上加载jar地址字节数据为空");
