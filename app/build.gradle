@@ -10,11 +10,11 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId 'com.github.tvbox.wolong'
-        minSdkVersion 21
+        applicationId 'com.github.tvbox.osc.tk'
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
-        versionName buildTime().toString()
+        versionName "1.0.".concat(buildTime())
         multiDexEnabled true
         //设置room的Schema的位置
         javaCompileOptions {
