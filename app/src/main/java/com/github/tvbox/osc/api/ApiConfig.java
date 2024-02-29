@@ -130,7 +130,7 @@ public class ApiConfig {
 
     public void loadConfig(boolean useCache, LoadConfigCallback callback, Activity activity) {
         // Embedded Source : Update in Strings.xml if required
-        String apiUrl = Hawk.get(HawkConfig.API_URL, "https://raw.gitmirror.com/bestpvp/tm/main/source/stable/main.json");
+        String apiUrl = Hawk.get(HawkConfig.API_URL, "https://atomgit.com/lintech/tms/raw/master/source/stable/main.json");
         if (apiUrl.isEmpty()) {
             callback.error("关注[码上放生]公众号，获取最新的[时光机]数据源");
             return;
