@@ -108,7 +108,7 @@ public class AbsJson implements Serializable {
         public String vod_year; //: "2021"
 
         public Movie.Video toXmlVideo() {
-            String prefix = "🔥关注[码上放生]公众号: "; 
+            String prefix = "🔥插兜的干货仓库: ";
             Movie.Video video = new Movie.Video();
             video.tag = vod_tag;
             video.last = vod_time;

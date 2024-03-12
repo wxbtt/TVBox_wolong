@@ -5,11 +5,11 @@
     <string name="app_source"></string>
 
     // Home Page //
-    <string name="hm_ok">本软件为免费开源项目, 以学习交流为目的, 所有内容来自网络公开数据, 不涉及制作、上传及储存内容, 如有广告均为三方提供, 请勿相信!\n关注[码上放生]公众号, 获取最新的[时光机]数据源</string>
-    <string name="hm_notok">加载失败: 关注[码上放生]公众号, 获取免费更新</string>
+    <string name="hm_ok">本软件为免费开源项目, 以学习交流为目的, 所有内容来自网络公开数据, 不涉及制作、上传及储存内容, 如有广告均为三方提供, 请勿相信!\n关注「插兜的干货仓库」, 获取最新的「时光机」数据源</string>
+    <string name="hm_notok">加载失败: 关注「插兜的干货仓库」, 获取免费更新</string>
     <string name="hm_retry">重试</string>
     <string name="hm_cancel">取消</string>
-    <string name="hm_exit">再按一次返回键退出应用, 关注[码上放生]公众号</string>
+    <string name="hm_exit">再按一次返回键退出应用, 关注「插兜的干货仓库」</string>
     <string name="hm_exit_live">再按一次返回键退出直播</string>
     <string name="hm_date1">MM月dd日</string>
     <string name="hm_date2">EE hh:mm aa</string>
