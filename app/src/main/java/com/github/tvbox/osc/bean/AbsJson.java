@@ -111,7 +111,6 @@ public class AbsJson implements Serializable {
         public String vod_year; //: "2021"
 
         public Movie.Video toXmlVideo() {
-//            String prefix = CustomUtil.getPrefix();
             String prefix = CustomUtil.getPrefix();
             Movie.Video video = new Movie.Video();
             video.tag = vod_tag;
