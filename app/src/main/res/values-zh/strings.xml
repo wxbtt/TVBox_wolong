@@ -5,8 +5,9 @@
     <string name="app_source"></string>
 
     // Home Page //
-    <string name="hm_ok">加载成功：关注「插兜的干货仓库」</string>
-    <string name="hm_notok">加载失败: 关注「插兜的干货仓库」</string>
+    <string name="hm_ok">数据源加载成功</string>
+    <string name="hm_ok_cache">缓存加载成功</string>
+    <string name="hm_notok">加载失败</string>
     <string name="hm_retry">重试</string>
     <string name="hm_cancel">取消</string>
     <string name="hm_exit">再按一次返回键退出应用：关注「插兜的干货仓库」</string>

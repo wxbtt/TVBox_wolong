@@ -733,6 +733,7 @@ public class SourceViewModel extends ViewModel {
                 if (!result.has("flag"))
                     result.put("flag", playFlag);
             }
+            System.out.println("getPlay -> "+result);
             return result;
         };
         threadPoolGetPlay.execute(() -> {

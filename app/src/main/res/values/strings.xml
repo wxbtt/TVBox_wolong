@@ -6,6 +6,7 @@
 
     // Home Page //
     <string name="hm_ok">Load Complete</string>
+    <string name="hm_ok_cache">Cache Load Complete</string>
     <string name="hm_notok">Load Fail</string>
     <string name="hm_retry">Retry</string>
     <string name="hm_cancel">Cancel</string>
