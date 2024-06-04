@@ -84,7 +84,7 @@ public class PlayService extends Service {
         remoteViews.setOnClickPendingIntent(R.id.iv_next, getPendingIntent(DetailActivity.BROADCAST_ACTION_NEXT));
         
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.app_icon)
+                .setSmallIcon(R.mipmap.ic_launcher)
                 .setContent(remoteViews)
                 .setCustomContentView(remoteViews)
                 .setContentIntent(getPendingIntentActivity())
