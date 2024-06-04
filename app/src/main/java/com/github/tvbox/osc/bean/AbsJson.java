@@ -1,6 +1,9 @@
 package com.github.tvbox.osc.bean;
 
+import com.github.tvbox.osc.util.CustomUtil;
+import com.github.tvbox.osc.util.HawkConfig;
 import com.github.tvbox.osc.util.StringUtils;
+import com.orhanobut.hawk.Hawk;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -108,12 +111,15 @@ public class AbsJson implements Serializable {
         public String vod_year; //: "2021"
 
         public Movie.Video toXmlVideo() {
+//            String prefix = CustomUtil.getPrefix();
+            String prefix = CustomUtil.getPrefix();
             Movie.Video video = new Movie.Video();
             video.tag = vod_tag;
             video.last = vod_time;
             video.id = vod_id;
             video.tid = type_id;
-            video.name = vod_name;
+//            video.name = vod_name;
+            video.name = CustomUtil.filterString(vod_name);
             video.type = type_name;
             // video.dt = vod_play_from == null ? "" : vod_play_from.replace("$$$", ",");
             video.pic = vod_pic;
@@ -139,17 +145,23 @@ public class AbsJson implements Serializable {
                         continue;
                     }
                     if(i > playFlags.length){
-                        urlInfo.flag = "线路" + i;
+                        urlInfo.flag = prefix + i;
                     } else {
-                        urlInfo.flag = StringUtils.isEmpty(playFlags[i]) ? "线路" + i : playFlags[i];
+                        urlInfo.flag = StringUtils.isEmpty(playFlags[i]) ? prefix + i : prefix + playFlags[i];
                     }
-                    urlInfo.urls = playUrls[i];
+                    urlInfo.urls = prefix + playUrls[i];
                     infoList.add(urlInfo);
                 }
                 urlBean.infoList = infoList;
             }
             video.urlBean = urlBean;
-            video.des = vod_content;// <![CDATA[权来]
+            String des = "";
+            if (vod_content != null) {
+                des = prefix + vod_content;
+            } else {
+                des = prefix;
+            }
+            video.des = CustomUtil.filterString(des);
             video.tag = vod_tag;
             return video;
         }

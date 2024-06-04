@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">TVBox</string>
+    <string name="app_name">卧龙</string>
     <string name="app_home">Home</string>
     <string name="app_source"></string>
 
     // Home Page //
     <string name="hm_ok">Load Complete</string>
+    <string name="hm_ok_cache">Cache Load Complete</string>
     <string name="hm_notok">Load Fail</string>
     <string name="hm_retry">Retry</string>
     <string name="hm_cancel">Cancel</string>

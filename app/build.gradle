@@ -2,19 +2,15 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
-def static buildTime() {
-    return new Date().format("yyyyMMdd_HHmm", TimeZone.getTimeZone("GMT+08:00"))
-}
-
 android {
     compileSdk 33
 
     defaultConfig {
-        applicationId 'com.github.tvbox.osc.tk'
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0.".concat(buildTime())
+        applicationId 'com.github.tvbox.wolong'
+        minSdkVersion 19
+        targetSdkVersion 33
+        versionCode 240514
+        versionName "240514"
         multiDexEnabled true
         //设置room的Schema的位置
         javaCompileOptions {
@@ -33,8 +29,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             minifyEnabled true
             ndk {
-                abiFilters 'armeabi-v7a'
+                abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86_64'
             }
+            signingConfig signingConfigs.debug
         }
     }
 
@@ -54,6 +51,12 @@ android {
 
     lint {
         disable 'UnsafeOptInUsageError'
+    }
+
+    applicationVariants.configureEach { variant ->
+        variant.outputs.configureEach {
+            outputFileName = "tm_box_wolong_${variant.buildType.name}_${versionName}.apk"
+        }
     }
 }
 
@@ -102,18 +105,14 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.3.1'
     implementation 'com.orhanobut:hawk:2.0.1'
     implementation 'net.sourceforge.streamsupport:android-retrofuture:1.7.4'
-//    implementation 'androidx.annotation:annotation:1.6.0'
+    implementation 'androidx.annotation:annotation:1.6.0'
     implementation "androidx.media3:media3-exoplayer:1.1.1"
     implementation "androidx.media3:media3-ui:1.1.1"
-    implementation "androidx.media3:media3-datasource:1.1.1"
     implementation "androidx.media3:media3-exoplayer-dash:1.1.1"
     implementation "androidx.media3:media3-exoplayer-hls:1.1.1"
     implementation "androidx.media3:media3-exoplayer-rtsp:1.1.1"
     implementation "androidx.media3:media3-datasource-rtmp:1.1.1"
     implementation 'androidx.media3:media3-common:1.1.1'
-    implementation "com.github.anilbeesetti.nextlib:nextlib-media3ext:0.5.0" // To add media3 software decoders and extensions
-    //implementation "com.github.anilbeesetti.nextlib:nextlib-mediainfo:0.5.0" // To get media info through ffmpeg
-
 
     implementation "com.aliyun.sdk.android:AliyunPlayer:5.5.2.0-full"
     implementation 'com.alivc.conan:AlivcConan:0.9.5'
