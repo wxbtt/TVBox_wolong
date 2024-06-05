@@ -14,10 +14,6 @@ function epg() {
     doAction('epg', { url: $('#diy_epg_url').val() });
 }
 
-function proxys() {
-    doAction('proxys', { url: $('#diy_proxy_server').val() });
-}
-
 function push() {
     doAction('push', { url: $('#push_url').val() });
 }

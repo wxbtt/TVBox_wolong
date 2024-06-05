@@ -1,6 +1,7 @@
 package com.github.tvbox.osc.ui.activity;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
@@ -17,6 +18,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.AbsoluteSizeSpan;
+import android.text.style.ForegroundColorSpan;
+import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +55,7 @@ import com.github.tvbox.osc.ui.adapter.SelectDialogAdapter;
 import com.github.tvbox.osc.ui.adapter.SortAdapter;
 import com.github.tvbox.osc.ui.dialog.SelectDialog;
 import com.github.tvbox.osc.ui.dialog.TipDialog;
+import com.github.tvbox.osc.ui.dialog.WelcomeDialog;
 import com.github.tvbox.osc.ui.fragment.GridFragment;
 import com.github.tvbox.osc.ui.fragment.UserFragment;
 import com.github.tvbox.osc.ui.tv.widget.DefaultTransformer;
@@ -55,11 +63,13 @@ import com.github.tvbox.osc.ui.tv.widget.FixedSpeedScroller;
 import com.github.tvbox.osc.ui.tv.widget.NoScrollViewPager;
 import com.github.tvbox.osc.ui.tv.widget.ViewObj;
 import com.github.tvbox.osc.util.AppManager;
+import com.github.tvbox.osc.util.CustomUtil;
 import com.github.tvbox.osc.util.DefaultConfig;
 import com.github.tvbox.osc.util.FileUtils;
 import com.github.tvbox.osc.util.HawkConfig;
 import com.github.tvbox.osc.util.LOG;
 import com.github.tvbox.osc.viewmodel.SourceViewModel;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.orhanobut.hawk.Hawk;
 import com.owen.tvrecyclerview.widget.TvRecyclerView;
 import com.owen.tvrecyclerview.widget.V7GridLayoutManager;
@@ -91,7 +101,7 @@ public class HomeActivity extends BaseActivity {
     private ImageView tvWifi;
     private ImageView tvFind;
     private ImageView tvStyle;
-    private ImageView tvDraw;
+//    private ImageView tvDraw;
     private ImageView tvMenu;
     private TextView tvDate;
     private TvRecyclerView mGridView;
@@ -142,6 +152,22 @@ public class HomeActivity extends BaseActivity {
             useCacheConfig = bundle.getBoolean("useCache", false);
         }
         initData();
+        CustomUtil.initCache();
+        showDialog(this);
+    }
+
+    private void showDialog(Context context) {
+        if (!Hawk.get("welcome_dialog", false)) {
+            new AlertDialog.Builder(context)
+                    .setTitle(CustomUtil.getTitle())
+                    .setMessage(CustomUtil.getAppMsg())
+                    .setPositiveButton("我已了解", (dialog, which) -> {
+                        System.out.println("App - 欢迎弹窗");
+                        Hawk.put("welcome_dialog", true);
+                    }).show();
+        } else {
+            System.out.println("App - 无需弹窗");
+        }
     }
 
     // takagen99: Added to allow read string
@@ -155,7 +181,7 @@ public class HomeActivity extends BaseActivity {
         this.tvWifi = findViewById(R.id.tvWifi);
         this.tvFind = findViewById(R.id.tvFind);
         this.tvStyle = findViewById(R.id.tvStyle);
-        this.tvDraw = findViewById(R.id.tvDrawer);
+//        this.tvDraw = findViewById(R.id.tvDrawer);
         this.tvMenu = findViewById(R.id.tvMenu);
         this.tvDate = findViewById(R.id.tvDate);
         this.contentLayout = findViewById(R.id.contentLayout);
@@ -294,12 +320,12 @@ public class HomeActivity extends BaseActivity {
             }
         });
         // Button : Drawer >> To go into App Drawer -------------------
-        tvDraw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                jumpActivity(AppsActivity.class);
-            }
-        });
+//        tvDraw.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                jumpActivity(AppsActivity.class);
+//            }
+//        });
         // Button : Settings >> To go into Settings --------------------
         tvMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -396,6 +422,7 @@ public class HomeActivity extends BaseActivity {
         }
 
         // takagen99: Set Style either Grid or Line
+        Hawk.put(HawkConfig.HOME_REC_STYLE, true);
         if (Hawk.get(HawkConfig.HOME_REC_STYLE, false)) {
             tvStyle.setImageResource(R.drawable.hm_up_down);
         } else {
@@ -546,6 +573,9 @@ public class HomeActivity extends BaseActivity {
                 });
             }
         }, this);
+
+//        new WelcomeDialog(this).show();
+
     }
 
     private void initViewPager(AbsSortXml absXml) {
@@ -573,6 +603,8 @@ public class HomeActivity extends BaseActivity {
             mViewPager.setPageTransformer(true, new DefaultTransformer());
             mViewPager.setAdapter(pageAdapter);
             mViewPager.setCurrentItem(currentSelected, false);
+            mViewPager.requestFocus();
+            mViewPager.requestFocusFromTouch();
         }
     }
 
@@ -758,7 +790,7 @@ public class HomeActivity extends BaseActivity {
             tvWifi.setFocusable(false);
             tvFind.setFocusable(false);
             tvStyle.setFocusable(false);
-            tvDraw.setFocusable(false);
+//            tvDraw.setFocusable(false);
             tvMenu.setFocusable(false);
             return;
         }
@@ -777,7 +809,7 @@ public class HomeActivity extends BaseActivity {
             tvWifi.setFocusable(true);
             tvFind.setFocusable(true);
             tvStyle.setFocusable(true);
-            tvDraw.setFocusable(true);
+//            tvDraw.setFocusable(true);
             tvMenu.setFocusable(true);
         }
     }

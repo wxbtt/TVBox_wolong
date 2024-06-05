@@ -173,7 +173,8 @@ public class PlayFragment extends BaseLazyFragment {
                     errorWithRetry("嗅探错误", false);
                 } else if (msg.what == 200) {
                     if (mHandler.hasMessages(100)) {
-                        setTip("加载完成，嗅探视频中", true, false);
+                        mHandler.removeMessages(100);
+                        setTip("未嗅探到视频", false, true);
                     }
                 } else if (msg.what == 300) {
                     setTip((String)msg.obj, false, true);
@@ -1811,7 +1812,7 @@ public class PlayFragment extends BaseLazyFragment {
                 mSysWebView.loadUrl("javascript:" + click);
             }
 
-            mHandler.sendEmptyMessage(200);
+            mHandler.sendEmptyMessageDelayed(200, 3 * 1000);
         }
 
         WebResourceResponse checkIsVideo(String url, HashMap<String, String> headers) {

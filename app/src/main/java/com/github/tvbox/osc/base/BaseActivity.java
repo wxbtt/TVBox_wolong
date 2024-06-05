@@ -34,6 +34,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Random;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import me.jessyan.autosize.AutoSizeCompat;
@@ -344,7 +345,10 @@ public abstract class BaseActivity extends AppCompatActivity implements CustomAd
         if (globalWp != null) {
             getWindow().setBackgroundDrawable(globalWp);
         } else {
-            getWindow().setBackgroundDrawableResource(R.drawable.app_bg);
+            Random random = new Random();
+            String randomBackgroundName = "wallpaper_"+ (1 + random.nextInt(5));
+            int backgroundResourceId = getResources().getIdentifier(randomBackgroundName, "drawable", getPackageName());
+            getWindow().setBackgroundDrawableResource(backgroundResourceId);
         }
     }
 }
